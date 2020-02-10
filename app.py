@@ -13,8 +13,8 @@ API_ID = '5a49555877205adc4deaaaee32f26d78'
 END_POINT = 'http://api.openweathermap.org/data/2.5/weather?'
 
 
-def weather_data(query):
-    response = requests.get(f'{END_POINT}{query}&APPID={API_ID}&units=metric')
+def weather_data(city):
+    response = requests.get(f'{END_POINT}{city}&APPID={API_ID}&units=metric')
     return response.json()
 
 
@@ -40,14 +40,14 @@ def print_weather(result, city):
 
 
 if __name__ == '__main__':
-    city = input('Enter the city:')
+    _city = input('Enter the city:')
     print()
     try:
-        query = 'q=' + city
-        w_data = weather_data(query)
+        city = 'q=' + _city
+        w_data = weather_data(city)
         logger.info('Getting the weather information of the entered city...')
 
-        print_weather(w_data, city)
+        print_weather(w_data, _city)
         print()
     except:
         print('City name not found...')
